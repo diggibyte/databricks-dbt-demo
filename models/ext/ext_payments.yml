@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: dbtdemo
+    tables:
+      - name: payments
+        description: "payments data stored as CSV files in ADLS"
+        external:
+          location: 'dbfs:/mnt/cntdlt/source/bronze/payments/'
+          using: csv
+          options:
+            sep: ','
+            header: 'true'
+            timestampFormat: 'yyyy-MM-dd HH:mm'
+
+        columns:
+          - name: id
+            data_type: string
+            description: "payments ID"
+          - name: order_id
+            data_type: string
+            description: "order id to identify  order"
+          - name: payment_method
+            data_type: string
+            description: "payment method "
+          - name: amount
+            data_type: string
+            description: "order amount "

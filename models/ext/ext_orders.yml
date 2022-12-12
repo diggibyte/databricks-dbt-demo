@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: dbtdemo
+    tables:
+      - name: orders
+        description: "orders data stored as CSV files in ADLS"
+        external:
+          location: 'dbfs:/mnt/cntdlt/source/bronze/orders/'
+          using: csv
+          options:
+            sep: ','
+            header: 'true'
+            timestampFormat: 'yyyy-MM-dd HH:mm'
+
+        columns:
+          - name: id
+            data_type: string
+            description: "order ID"
+          - name: user_id
+            data_type: string
+            description: "user id who places the order"
+          - name: order_date
+            data_type: string
+            description: "date on order has been made"
+          - name: status
+            data_type: string
+            description: "status of order"
