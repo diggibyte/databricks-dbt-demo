@@ -1,13 +1,17 @@
 version: 2
 
 sources:
-  - name: dbtdemo
+  - name: bronze
+    schema: "bronze"
     tables:
       - name: customers
         description: "customers  data stored as CSV files in ADLS"
         external:
           location: 'dbfs:/mnt/cntdlt/source/bronze/customers/'
           using: csv
+          partitions:
+            - name: ing_date
+              data_type: int
           options:
             sep: ','
             header: 'true'

@@ -6,6 +6,9 @@ Try running the following commands:
 - dbt run
 - dbt test
 
+runing using differnet profile
+dbt run --profiles-dir /Users/anujsen/Documents/demo_dbt/
+
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
