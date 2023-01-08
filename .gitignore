@@ -1,6 +1,9 @@
 .idea/*
 target/
 dbt_packages/
+dbt_databricks/*
+dbt_mysql/*
 logs/
 profiles/*
 backup/*
+external_script/*

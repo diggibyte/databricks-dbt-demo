@@ -1,18 +1,28 @@
-Welcome to your new dbt project!
+Load databricks based project 
 
 ### Using the starter project
 
 Try running the following commands:
-- dbt run
-- dbt test
 
-runing using differnet profile
-dbt run --profiles-dir /Users/anujsen/Documents/demo_dbt/
+- To Load External table  
+dbt run-operation stage_external_sources --vars "ext_full_refresh: true"
 
-
+- To Run with variable  
+dbt run --vars '{ ing_date : yyyymmdd}'   --profiles-dir /path/to/profiles/databricks  
+  
+- To Generate Doc  
+dbt docs generate --profiles-dir /path/to/profiles/databricks
 ### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+
+
+on-run-end: "{{ dbt_artifacts.upload_results(results) }}"
+dbt_artifacts:
++schema: audit
+bronze:
++schema: bronze
+silver:
++schema: silver
+gold:
++schema: gold
+
+on-run-end: "{{ dbt_artifacts.upload_results(results) }}"
